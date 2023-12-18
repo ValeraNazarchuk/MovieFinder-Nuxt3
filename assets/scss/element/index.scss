@@ -1,0 +1,47 @@
+$dark_orange: #CC5217;
+$orange: #FF671D;
+$light_orange: #FFE1D3;
+$white: #FFFFFF;
+$black: #1A1817;
+$dark_warm: #3F3C3C;
+$dark_warm_2: #2D2B29;
+$gray_warm_30: #C5C1C0;
+$gray_cold_30: #B8C4CB;
+$gray_cold_20: #CFD8DC;
+$gray_cold_10: #E8ECEE;
+$gray_cold_03: #F8F9FA;
+$gray: #6D7E86;
+$dark_gray: #363F43;
+$blue: #0096EB;
+$dark_blue: #36464B;
+$green: #6DCB0F;
+$yellow: #FACD2F;
+
+$gradient: linear-gradient(270deg, #FF5E10 0%, #FF854A 100%);
+
+$transition-all: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+$transition-custom: 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+$drop-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.10);
+
+$--colors: (
+  "primary": (
+    "base": $black,
+  ),
+);
+$--input: (
+  "border-color": $gray_cold_30,
+  "focus-border-color": $orange,
+  "text-color": $dark_gray,
+  "placeholder-color": $gray,
+);
+$--switch: (
+  "on-color": $orange,
+  "off-color": $gray_cold_30,
+);
+
+@forward "element-plus/theme-chalk/src/common/var" with (
+  $colors: $--colors,
+  $input: $--input,
+  $switch: $--switch,
+);
