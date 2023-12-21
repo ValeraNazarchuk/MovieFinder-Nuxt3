@@ -45,3 +45,7 @@ $--switch: (
   $input: $--input,
   $switch: $--switch,
 );
+
+:deep(.el-form-item__label) {
+  color: $white;
+}

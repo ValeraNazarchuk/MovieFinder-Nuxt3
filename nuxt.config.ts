@@ -3,7 +3,7 @@ export default defineNuxtConfig({
     head: {
       title: "Base Nuxt Setup",
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.png" }],
-      lang: "en",
+      // lang: "en",
       meta: [
         {
           name: "viewport",
@@ -42,6 +42,7 @@ export default defineNuxtConfig({
           additionalData: `
           @use "@/assets/scss/element/index.scss" as *;
           @use "@/assets/scss/typography.scss" as *;
+          @use "@/assets/scss/vars.scss" as *;
         `,
         },
       },
@@ -51,6 +52,7 @@ export default defineNuxtConfig({
     importStyle: "scss",
   },
   runtimeConfig: {
+    apiKey: import.meta.env.NUXT_API_KEY,
     public: {
       baseURL: process.env.NUXT_PUBLIC_BASE_URL,
     },
