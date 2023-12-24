@@ -18,9 +18,9 @@
           Sorry, the page you are looking for was not found
         </p>
         <div class="error-content__btn">
-          <NuxtLink to="/map">
+          <NuxtLink to="/">
             <el-button class="el-button el-button--primary"
-              >Go to map</el-button
+              >Go to Home</el-button
             >
           </NuxtLink>
           <NuxtLink to="/">

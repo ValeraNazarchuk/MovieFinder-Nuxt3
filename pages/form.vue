@@ -1,5 +1,10 @@
 <script setup>
 import { ref, reactive } from "vue";
+import { useHead } from "#app";
+
+useHead({
+  title: "Form",
+});
 
 const showUpload = ref(true);
 
