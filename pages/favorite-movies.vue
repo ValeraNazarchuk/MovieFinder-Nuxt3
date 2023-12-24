@@ -1,30 +1,34 @@
 <script setup>
 import { useRouter } from "vue-router";
-// import { useFavoriteMoviesStore } from "@/stores/FavoriteMovies";
+import { useFavoriteMoviesStore } from "@/stores/FavoriteMovies";
+import { useHead } from "#app";
 
-// const favoriteMoviesStore = useFavoriteMoviesStore();
+useHead({
+  title: "Favorite-movies",
+});
+
+const favoriteMoviesStore = useFavoriteMoviesStore();
 
 const router = useRouter();
 
 const watchMovie = (movie) => {
-  // router.push(`/detailed-movies/${movie.imdbID}`);
+  router.push(`/movies/${movie.imdbID}`);
 };
 </script>
 
 <template>
   <div class="movies">
-    <p>FavoriteMovies</p>
-    <!-- <h2 v-if="favoriteMoviesStore.movies.length === 0" class="movies__error">
+    <h2 v-if="favoriteMoviesStore.movies.length === 0" class="movies__error">
       List is empty
     </h2>
     <div v-else>
       <h2 class="movies__title">Movies</h2>
-      <list-movies
+      <ListFavorite
         :movies="favoriteMoviesStore.movies"
         @deleteMovie="favoriteMoviesStore.deleteMovie"
         @onWatch="watchMovie"
       />
-    </div> -->
+    </div>
   </div>
 </template>
 
