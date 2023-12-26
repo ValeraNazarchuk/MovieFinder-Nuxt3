@@ -1,4 +1,5 @@
 <script setup>
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useFavoriteMoviesStore } from "@/stores/FavoriteMovies";
 import { useHead } from "#app";
@@ -8,12 +9,56 @@ useHead({
 });
 
 const favoriteMoviesStore = useFavoriteMoviesStore();
-
 const router = useRouter();
+
+const moviesLimit = ref([]);
+const reloading = ref(false);
+const loadingFullWindow = ref(false);
 
 const watchMovie = (movie) => {
   router.push(`/movies/${movie.imdbID}`);
 };
+
+const loadMore = () => {
+  const moviesLength = favoriteMoviesStore.movies.length;
+
+  if (moviesLimit.value.length !== moviesLength && !loadingFullWindow.value) {
+    reloading.value = true;
+  }
+
+  setTimeout(() => {
+    const startIndex = moviesLimit.value.length;
+    const newItems = favoriteMoviesStore.movies.slice(
+      startIndex,
+      startIndex + 9
+    );
+    moviesLimit.value = [...moviesLimit.value, ...newItems];
+    reloading.value = false;
+  }, 1000);
+};
+
+onMounted(() => {
+  loadingFullWindow.value = true;
+  setTimeout(() => {
+    loadingFullWindow.value = false;
+  }, 1500);
+
+  const options = {
+    rootMargin: "0px",
+    threshold: 1.0,
+  };
+
+  const callback = (entries) => {
+    if (entries[0].isIntersecting) {
+      loadMore();
+    }
+  };
+
+  const observerElement = document.getElementById("observerElement");
+
+  const observer = new IntersectionObserver(callback, options);
+  observer.observe(observerElement);
+});
 </script>
 
 <template>
@@ -21,13 +66,20 @@ const watchMovie = (movie) => {
     <h2 v-if="favoriteMoviesStore.movies.length === 0" class="movies__error">
       List is empty
     </h2>
+    <div v-else-if="loadingFullWindow" class="loader-container">
+      <BaseLoader />
+    </div>
     <div v-else>
       <h2 class="movies__title">Movies</h2>
       <ListFavorite
-        :movies="favoriteMoviesStore.movies"
+        :movies="moviesLimit"
         @deleteMovie="favoriteMoviesStore.deleteMovie"
         @onWatch="watchMovie"
       />
+    </div>
+    <div id="observerElement"></div>
+    <div v-show="reloading" class="movies__loader">
+      <BaseLoader />
     </div>
   </div>
 </template>

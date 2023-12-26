@@ -5,35 +5,23 @@ export const useFavoriteMoviesStore = defineStore("favoriteMoviesStore", () => {
   const loading = ref(false);
   const movies = ref([]);
 
-  const cookies = document.cookie;
-  const moviesOnCookies = cookies
-    .split(";")
-    .find((cookie) => cookie.trim().startsWith("movies="));
-
-  if (moviesOnCookies) {
-    movies.value = JSON.parse(moviesOnCookies.split("=")[1]);
+  const moviesOnLocalStorage = localStorage.getItem("movies");
+  if (moviesOnLocalStorage) {
+    movies.value = JSON.parse(moviesOnLocalStorage)._value;
   }
 
   const addMovie = (movie) => {
-    movies.value.push(movie);
-    updateCookie();
+    movies.value.unshift(movie);
   };
 
   const deleteMovie = (movieId) => {
     movies.value = movies.value.filter((el) => movieId !== el.imdbID);
-    updateCookie();
-  };
-
-  const updateCookie = () => {
-    document.cookie = `movies=${JSON.stringify(
-      movies.value
-    )}; expires=Thu, 01 Jan 2030 00:00:00 UTC; path=/;`;
   };
 
   watch(
     () => movies,
-    () => {
-      updateCookie();
+    (state) => {
+      localStorage.setItem("movies", JSON.stringify(state));
     },
     { deep: true }
   );
