@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from "vue";
+// import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import { useFavoriteMoviesStore } from "@/stores/FavoriteMovies";
 import { useHead } from "#app";
@@ -36,6 +36,20 @@ const loadMore = () => {
     reloading.value = false;
   }, 1000);
 };
+
+const updateMoviesLimit = () => {
+  moviesLimit.value = favoriteMoviesStore.movies.slice(
+    0,
+    moviesLimit.value.length
+  );
+};
+
+watch(
+  () => favoriteMoviesStore.movies,
+  () => {
+    updateMoviesLimit();
+  }
+);
 
 onMounted(() => {
   loadingFullWindow.value = true;
