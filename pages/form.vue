@@ -97,13 +97,13 @@ const handleImageUploaded = (url) => {
   >
     <h3 class="form__title">Sent movie</h3>
     <el-form-item class="form__item" label="Enter Title" prop="title">
-      <BaseInput v-model="data.title" />
+      <BaseInput v-model="data.title" :type="'text'" />
     </el-form-item>
     <el-form-item class="form__item" label="Enter Year" prop="year">
-      <BaseInput v-model.number="data.year" />
+      <BaseInput v-model.number="data.year" :type="'text'" />
     </el-form-item>
     <el-form-item class="form__item" label="Enter Director" prop="director">
-      <BaseInput v-model="data.director" />
+      <BaseInput v-model="data.director" :type="'text'" />
     </el-form-item>
     <el-form-item class="form__item" label="Enter Poster" prop="poster">
       <FormUploadFile
