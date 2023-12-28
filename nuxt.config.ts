@@ -52,9 +52,9 @@ export default defineNuxtConfig({
     importStyle: "scss",
   },
   runtimeConfig: {
-    apiKey: import.meta.env.NUXT_API_KEY,
     public: {
       baseURL: process.env.NUXT_PUBLIC_BASE_URL,
+      apiKey: process.env.NUXT_API_KEY,
     },
   },
   routeRules: {},

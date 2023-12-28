@@ -11,7 +11,7 @@ export const useMoviesStore = defineStore("moviesStore", () => {
     loading.value = true;
     try {
       const response = await api(`?s=${movie}&page=${page}`);
-      movies.value = response.Search;
+      movies.value = JSON.parse(response.data.value).Search;
     } catch (error) {
       console.error("Error fetching movies:", error);
     } finally {
@@ -23,7 +23,7 @@ export const useMoviesStore = defineStore("moviesStore", () => {
     loading.value = true;
     try {
       const response = await api(`?i=${movieId}`);
-      movie.value = response;
+      movie.value = JSON.parse(response.data.value);
     } catch (error) {
       console.error("Error fetching movie:", error);
     } finally {
