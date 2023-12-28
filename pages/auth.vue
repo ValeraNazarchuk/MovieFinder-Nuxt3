@@ -1,7 +1,7 @@
 <script setup>
 // import { onMounted, ref } from "vue";
 // import { useRouter, useRoute } from "vue-router";
-import { useAuthStore } from "@/stores/auth.js";
+import { useAuthStore } from "@/stores/auth";
 
 import { useHead } from "#app";
 
@@ -12,7 +12,7 @@ useHead({
 definePageMeta({ layout: "auth" });
 
 const router = useRouter();
-// const authStore = useAuthStore();
+const authStore = useAuthStore();
 const data = reactive({
   email: "",
   password: "",
@@ -37,12 +37,12 @@ const sendForm = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      // const result = authStore.checkCredentials(data);
-      // if (result) {
-      //   router.push("/");
-      // } else {
-      //   alert("Ви неправльно ввели email або password");
-      // }
+      const result = authStore.checkCredentials(data);
+      if (result) {
+        router.push("/");
+      } else {
+        alert("Ви неправльно ввели email або password");
+      }
     } else {
       console.log("error submit!", fields);
     }
