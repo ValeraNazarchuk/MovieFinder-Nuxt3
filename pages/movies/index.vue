@@ -48,9 +48,7 @@ const watchMovie = (movie) => {
   router.push(`/movies/${movie.imdbID}`);
 };
 
-onMounted(() => {
-  moviesStore.getListMovies(route.query.search, route.query.page);
-});
+await moviesStore.getListMovies(route.query.search, route.query.page);
 </script>
 
 <template>

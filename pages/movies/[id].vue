@@ -1,14 +1,14 @@
 <script setup>
-import { onMounted, computed } from "vue";
+import { computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useMoviesStore } from "@/stores/movies";
 import { useFavoriteMoviesStore } from "@/stores/FavoriteMovies";
 
-// import { useHead } from "#app";
+import { useHead } from "#app";
 
-// useHead({
-//   title: `${movie.value.Title}`,
-// });
+useHead({
+  title: "detailed",
+});
 
 const router = useRouter();
 const route = useRoute();
@@ -24,9 +24,7 @@ const auditId = (movieId) => {
   return exists;
 };
 
-onMounted(() => {
-  movieStore.getDetailedMovie(route.params.id);
-});
+await movieStore.getDetailedMovie(route.params.id);
 </script>
 
 <template>
