@@ -34,9 +34,7 @@ await movieStore.getDetailedMovie(route.params.id);
   <div v-else class="movie">
     <div class="movie__inner">
       <div class="movie__content">
-        <BaseButton :type="'primary'" @onClick="router.back()">
-          Back
-        </BaseButton>
+        <BaseButton type="primary" @onClick="router.back()"> Back </BaseButton>
         <h3 class="movie__content-title">{{ movie.Title }}</h3>
         <p>
           IMDb: <strong>{{ movie.imdbRating }}</strong>
@@ -59,14 +57,14 @@ await movieStore.getDetailedMovie(route.params.id);
         <div class="movie__images-buttons">
           <BaseButton
             v-show="!auditId(movie.imdbID)"
-            :type="'success'"
+            type="success"
             @onClick="favoriteMoviesStore.addMovie(movie)"
           >
             Add in the favorite movies
           </BaseButton>
           <BaseButton
             v-show="auditId(movie.imdbID)"
-            :type="'danger'"
+            type="danger"
             @onClick="favoriteMoviesStore.deleteMovie(movie.imdbID)"
           >
             Delete with favorite list

@@ -93,7 +93,7 @@ const handleImageUploaded = (url) => {
     label-position="top"
     label-width="120px"
     status-icon
-    @submit.prevent
+    @submit.prevent="sendForm(ruleFormRef)"
   >
     <h3 class="form__title">Sent movie</h3>
     <el-form-item class="form__item" label="Enter Title" prop="title">
@@ -112,9 +112,7 @@ const handleImageUploaded = (url) => {
       />
     </el-form-item>
     <el-form-item>
-      <BaseButton :type="'primary'" @click="sendForm(ruleFormRef)">
-        Send
-      </BaseButton>
+      <BaseButton native-type="submit" type="primary"> Send </BaseButton>
     </el-form-item>
   </el-form>
 </template>

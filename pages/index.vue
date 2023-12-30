@@ -44,16 +44,13 @@ const searchClick = async (formEl) => {
       :rules="rules"
       label-position="top"
       status-icon
-      @submit.prevent
-      @keyup.enter="searchClick(ruleFormRef)"
+      @submit.prevent="searchClick(ruleFormRef)"
     >
       <el-form-item label="Search Movie" prop="movieValue">
         <BaseInput v-model="ruleForm.movieValue" :type="'text'" />
       </el-form-item>
       <el-form-item>
-        <BaseButton :type="'primary'" @onClick="searchClick(ruleFormRef)">
-          Search
-        </BaseButton>
+        <BaseButton type="primary" native-type="submit"> Search </BaseButton>
       </el-form-item>
     </el-form>
   </div>

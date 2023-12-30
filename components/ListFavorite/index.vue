@@ -28,7 +28,7 @@ const watchMovieClick = (movieId) => {
       <div class="movies__list-buttons">
         <BaseButton
           class="movies__list-open"
-          :type="'primary'"
+          type="primary"
           @onClick="watchMovieClick(movie)"
         >
           Open
@@ -36,7 +36,7 @@ const watchMovieClick = (movieId) => {
 
         <BaseButton
           class="movies__list-delete"
-          :type="'danger'"
+          type="danger"
           @onClick="handleChange(movie.imdbID)"
         >
           Delete

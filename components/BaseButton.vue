@@ -6,6 +6,12 @@ const props = defineProps({
   type: {
     type: String,
     required: true,
+    default: "default",
+  },
+  nativeType: {
+    type: String,
+    required: true,
+    default: "button",
   },
   disabled: {
     type: Boolean,
@@ -13,7 +19,7 @@ const props = defineProps({
   },
 });
 
-const { type } = toRefs(props);
+const { type, nativeType } = toRefs(props);
 
 const handleClick = () => {
   emits("onClick");
@@ -21,7 +27,11 @@ const handleClick = () => {
 </script>
 
 <template>
-  <el-button :disabled="disabled" :type="type" @click="handleClick"
+  <el-button
+    :disabled="disabled"
+    :native-type="nativeType"
+    :type="type"
+    @click="handleClick"
     ><slot
   /></el-button>
 </template>
