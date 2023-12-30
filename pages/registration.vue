@@ -1,6 +1,6 @@
 <script setup>
-// import { onMounted, ref } from "vue";
-// import { useRouter, useRoute } from "vue-router";
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth.js";
 
 import { useHead } from "#app";
@@ -35,6 +35,14 @@ const rules = reactive({
   ],
 });
 
+const openNotification = (text) => {
+  ElNotification({
+    title: "Error",
+    message: text,
+    type: "error",
+  });
+};
+
 const sendForm = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
@@ -42,9 +50,11 @@ const sendForm = async (formEl) => {
       authStore.addUser(data);
       if (authStore.similarEmail) {
         router.push("/auth");
+      } else {
+        openNotification("A user with this email has already been created");
       }
     } else {
-      console.log("error submit!", fields);
+      openNotification("Check if you entered everything correctly");
     }
   });
 };
@@ -89,9 +99,6 @@ const sendForm = async (formEl) => {
           @click="sendForm(ruleFormRef)"
           >Sing Up</BaseButton
         >
-        <!-- <div class="auth__buttons">
-          <BaseButton type="default">Cancel</BaseButton>
-        </div> -->
         <NuxtLink class="auth__link" to="/auth"> Log in → </NuxtLink>
       </el-form>
     </div>

@@ -69,10 +69,15 @@ const sendForm = async (formEl) => {
 
       data.title = "";
       data.year = "";
-      data.director = "";
       data.poster = null;
 
       showUpload.value = false;
+
+      ElNotification({
+        title: "Added",
+        message: "movie added",
+        type: "success",
+      });
     } else {
       console.log("error submit!", fields);
     }
@@ -95,7 +100,7 @@ const handleImageUploaded = (url) => {
     status-icon
     @submit.prevent="sendForm(ruleFormRef)"
   >
-    <h3 class="form__title">Sent movie</h3>
+    <h3 class="form__title">Add movie</h3>
     <el-form-item class="form__item" label="Enter Title" prop="title">
       <BaseInput v-model="data.title" :type="'text'" />
     </el-form-item>

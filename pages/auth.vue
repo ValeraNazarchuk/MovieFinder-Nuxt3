@@ -33,6 +33,14 @@ const rules = reactive({
   ],
 });
 
+const openNotification = (text) => {
+  ElNotification({
+    title: "Error",
+    message: text,
+    type: "error",
+  });
+};
+
 const sendForm = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
@@ -41,10 +49,10 @@ const sendForm = async (formEl) => {
       if (result) {
         router.push("/");
       } else {
-        alert("Ви неправльно ввели email або password");
+        openNotification("You entered the wrong email or password");
       }
     } else {
-      console.log("error submit!", fields);
+      openNotification("Please input your data");
     }
   });
 };

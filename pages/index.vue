@@ -18,9 +18,18 @@ const rules = reactive({
     { min: 3, message: "The length should be from 3", trigger: "blur" },
   ],
 });
+
 const ruleForm = reactive({
   movieValue: "",
 });
+
+const openNotification = (text) => {
+  ElNotification({
+    title: "Error",
+    message: text,
+    type: "error",
+  });
+};
 
 const searchClick = async (formEl) => {
   if (!formEl) return;
@@ -28,7 +37,11 @@ const searchClick = async (formEl) => {
     if (valid) {
       router.push(`/movies?search=${ruleForm.movieValue}&page=1`);
     } else {
-      alert("error submit!", fields);
+      if (ruleForm.movieValue.length === 0) {
+        openNotification("Error submit, enter text!");
+      } else {
+        openNotification("The length should be from 3!");
+      }
     }
   });
 };
