@@ -56,7 +56,11 @@ movieStore.getDetailedMovie(route.params.id);
       </div>
       <div class="movie__images">
         <div class="movie__images-box">
-          <img v-if="movie.Poster !== 'N/A'" :src="movie.Poster" alt="poster" />
+          <nuxt-img
+            v-if="movie.Poster !== 'N/A'"
+            :src="movie.Poster"
+            alt="poster"
+          />
           <el-empty v-else :image-size="200" description="No photo" />
         </div>
         <div class="movie__images-buttons">

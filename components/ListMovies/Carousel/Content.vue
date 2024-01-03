@@ -12,7 +12,7 @@ const { movie } = toRefs(props);
 </script>
 
 <template>
-  <img
+  <nuxt-img
     v-if="movie.Poster !== 'N/A'"
     class="carousel__poster"
     :src="movie.Poster"
