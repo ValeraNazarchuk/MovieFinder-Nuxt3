@@ -56,7 +56,6 @@ const { movie } = toRefs(props);
     margin-bottom: 10px;
   }
   &__poster {
-    object-fit: cover;
     width: 100%;
     height: 70%;
     border-radius: 20px 20px 0 0;
@@ -64,11 +63,5 @@ const { movie } = toRefs(props);
   &__btn {
     margin: 0 auto;
   }
-}
-
-.el-button--primary {
-  margin-top: auto;
-  justify-self: center;
-  border-radius: 0px 0px 20px 20px;
 }
 </style>

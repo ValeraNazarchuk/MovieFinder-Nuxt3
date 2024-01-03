@@ -77,7 +77,7 @@ await moviesStore.getListMovies(route.query.search, route.query.page);
 <style lang="scss" scoped>
 .movies {
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 750px;
   &__error {
     color: $fs-white;
     height: 100%;

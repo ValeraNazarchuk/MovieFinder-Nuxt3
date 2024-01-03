@@ -56,7 +56,6 @@ const { movie } = toRefs(props);
     margin-bottom: 10px;
   }
   &__poster {
-    object-fit: cover;
     width: 100%;
     height: 70%;
     border-radius: 20px 20px 0 0;

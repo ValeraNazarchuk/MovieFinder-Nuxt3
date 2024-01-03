@@ -59,34 +59,11 @@ const watchMovieClick = (movieId) => {
     background-color: $bg-gray;
     border-radius: 20px;
   }
-  &__content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 10px;
-    height: 100%;
-  }
-  &__title {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    margin-bottom: 10px;
-  }
-  &__poster {
-    object-fit: cover;
-    width: 100%;
-    height: 70%;
-    border-radius: 20px 20px 0 0;
-  }
-  &__btn {
-    margin: 0 auto;
-  }
 }
 
 .el-button--primary {
-  margin-top: auto;
-  justify-self: center;
+  font-size: 18px;
+  padding: 20px 0;
   border-radius: 0px 0px 20px 20px;
 }
 </style>
