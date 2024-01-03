@@ -28,6 +28,7 @@ const watchMovieClick = (movieId) => {
       <div class="movies__list-buttons">
         <BaseButton
           class="movies__list-open"
+          native-type="button"
           type="primary"
           @onClick="watchMovieClick(movie)"
         >
@@ -36,6 +37,7 @@ const watchMovieClick = (movieId) => {
 
         <BaseButton
           class="movies__list-delete"
+          native-type="button"
           type="danger"
           @onClick="handleChange(movie.imdbID)"
         >
@@ -83,10 +85,4 @@ const watchMovieClick = (movieId) => {
     }
   }
 }
-
-// .el-button--primary {
-//     margin-top: auto;
-//     justify-self: center;
-//     border-radius: 0px 0px 20px 20px;
-// }
 </style>

@@ -71,7 +71,7 @@ const sendForm = async (formEl) => {
         label-position="top"
         label-width="120px"
         status-icon
-        @submit.prevent
+        @submit.prevent="sendForm(ruleFormRef)"
       >
         <h2 class="auth__title">Registration</h2>
         <el-form-item
@@ -94,9 +94,9 @@ const sendForm = async (formEl) => {
           </p>
         </div>
         <BaseButton
+          native-type="submit"
           type="primary"
           :disabled="data.email && data.password && !checked"
-          @click="sendForm(ruleFormRef)"
           >Sing Up</BaseButton
         >
         <NuxtLink class="auth__link" to="/auth"> Log in → </NuxtLink>

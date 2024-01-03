@@ -1,5 +1,4 @@
 <script setup>
-// core
 import { useHead } from "#app";
 
 // definePageMeta({ layout: "default", middleware: ["default"] });
@@ -63,7 +62,7 @@ const searchClick = async (formEl) => {
         <BaseInput v-model="ruleForm.movieValue" :type="'text'" />
       </el-form-item>
       <el-form-item>
-        <BaseButton type="primary" native-type="submit"> Search </BaseButton>
+        <BaseButton native-type="submit" type="primary"> Search </BaseButton>
       </el-form-item>
     </el-form>
   </div>

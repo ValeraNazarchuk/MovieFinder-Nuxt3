@@ -69,7 +69,7 @@ const sendForm = async (formEl) => {
         label-position="top"
         label-width="120px"
         status-icon
-        @submit.prevent
+        @submit.prevent="sendForm(ruleFormRef)"
       >
         <h2 class="auth__title">Log in to your account</h2>
         <el-form-item
@@ -82,12 +82,7 @@ const sendForm = async (formEl) => {
         <el-form-item class="form__item" label="Enter password" prop="password">
           <BaseInput v-model="data.password" :type="'password'" />
         </el-form-item>
-        <BaseButton type="primary" @click="sendForm(ruleFormRef)"
-          >Log in</BaseButton
-        >
-        <!-- <div class="auth__buttons">
-          <BaseButton type="default">Cancel</BaseButton>
-        </div> -->
+        <BaseButton native-type="submit" type="primary">Log in</BaseButton>
         <NuxtLink class="auth__link" to="/registration"> Sign up → </NuxtLink>
       </el-form>
     </div>

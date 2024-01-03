@@ -36,7 +36,11 @@ const watchMovieClick = (movieId) => {
       class="carousel__item"
     >
       <list-movies-carousel-content :movie="movie" />
-      <BaseButton type="primary" @onClick="watchMovieClick(movie)">
+      <BaseButton
+        native-type="button"
+        type="primary"
+        @onClick="watchMovieClick(movie)"
+      >
         Watch
       </BaseButton>
     </el-carousel-item>
