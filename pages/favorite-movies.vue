@@ -51,12 +51,12 @@ watch(
   }
 );
 
-onMounted(() => {
-  loadingFullWindow.value = true;
-  setTimeout(() => {
-    loadingFullWindow.value = false;
-  }, 1500);
+loadingFullWindow.value = true;
+setTimeout(() => {
+  loadingFullWindow.value = false;
+}, 1000);
 
+onMounted(() => {
   const options = {
     rootMargin: "0px",
     threshold: 1.0,

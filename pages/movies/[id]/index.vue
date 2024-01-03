@@ -23,10 +23,7 @@ const auditId = (movieId) => {
   return exists;
 };
 
-// await movieStore.getDetailedMovie(route.params.id);
-onMounted(async () => {
-  await movieStore.getDetailedMovie(route.params.id);
-});
+movieStore.getDetailedMovie(route.params.id);
 </script>
 
 <template>
