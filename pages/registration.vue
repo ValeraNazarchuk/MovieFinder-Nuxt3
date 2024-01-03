@@ -1,8 +1,8 @@
 <script setup>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth.js";
-
+import { definePageMeta } from "#imports";
 import { useHead } from "#app";
 
 useHead({

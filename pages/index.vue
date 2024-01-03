@@ -1,5 +1,8 @@
 <script setup>
+import { ref, reactive } from "vue";
+import { useRouter } from "vue-router";
 import { useHead } from "#app";
+import { definePageMeta } from "#imports";
 
 // definePageMeta({ layout: "default", middleware: ["default"] });
 definePageMeta({ layout: "default" });
