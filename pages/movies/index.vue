@@ -48,28 +48,28 @@ const watchMovie = (movie) => {
   router.push(`/movies/${movie.imdbID}`);
 };
 
-await moviesStore.getListMovies(route.query.search, route.query.page);
+moviesStore.getListMovies(route.query.search, route.query.page);
+// onMounted(async () => {
+//   await moviesStore.getListMovies(route.query.search, route.query.page);
+// });
 </script>
 
 <template>
   <div class="movies">
-    <h2
-      v-if="!moviesStore.movies && !moviesStore.loading"
-      class="movies__error"
-    >
-      No movies found
-    </h2>
-    <div v-else-if="moviesStore.loading" class="loader-container">
+    <h2 v-if="moviesStore.loading" class="loader-container">
       <BaseLoader />
-    </div>
+    </h2>
     <div v-else>
-      <h2 class="movies__title">Movies</h2>
-      <list-movies-carousel
-        :movies="moviesStore.movies"
-        @updateIndex="handleIndexUpdate"
-        @onWatch="watchMovie"
-      >
-      </list-movies-carousel>
+      <h2 v-if="!moviesStore.movies" class="movies__error">No movies found</h2>
+      <div v-else>
+        <h2 class="movies__title">Movies</h2>
+        <list-movies-carousel
+          :movies="moviesStore.movies"
+          @updateIndex="handleIndexUpdate"
+          @onWatch="watchMovie"
+        >
+        </list-movies-carousel>
+      </div>
     </div>
   </div>
 </template>
