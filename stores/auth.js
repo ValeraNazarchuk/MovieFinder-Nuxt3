@@ -1,18 +1,13 @@
 import { defineStore } from "pinia";
-import { ref, watch } from "vue";
+import { ref } from "vue";
+import { useCookie } from "nuxt/app";
 
 export const useAuthStore = defineStore("authStore", () => {
-  const users = ref([]);
   const similarEmail = ref(true);
 
-  const cookies = document.cookie;
-  const usersOnCookies = cookies
-    .split(";")
-    .find((cookie) => cookie.trim().startsWith("users="));
-
-  if (usersOnCookies) {
-    users.value = JSON.parse(usersOnCookies.split("=")[1]);
-  }
+  const users = useCookie("users", {
+    default: () => [],
+  });
 
   const addUser = (userObject) => {
     const foundUser = users.value.find(
@@ -20,11 +15,9 @@ export const useAuthStore = defineStore("authStore", () => {
     );
     if (!foundUser) {
       users.value.push(userObject);
-      updateCookie();
       similarEmail.value = true;
     } else {
       similarEmail.value = false;
-      alert("Користувач з таким email вже створений");
     }
   };
 
@@ -39,20 +32,6 @@ export const useAuthStore = defineStore("authStore", () => {
 
     return foundUser.password === userObject.password;
   }
-
-  const updateCookie = () => {
-    document.cookie = `users=${JSON.stringify(
-      users.value
-    )}; expires=Thu, 01 Jan 2030 00:00:00 UTC; path=/;`;
-  };
-
-  watch(
-    () => users,
-    () => {
-      updateCookie();
-    },
-    { deep: true }
-  );
 
   return {
     similarEmail,
