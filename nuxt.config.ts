@@ -15,12 +15,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  modules: [
-    "@pinia/nuxt",
-    "@element-plus/nuxt",
-    "@nuxtjs/device",
-    "@nuxt/image",
-  ],
+  modules: ["@pinia/nuxt", "@element-plus/nuxt", "@nuxt/image"],
   pinia: {
     autoImports: ["defineStore", ["defineStore", "definePiniaStore"]],
   },
