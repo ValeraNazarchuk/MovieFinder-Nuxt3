@@ -77,7 +77,7 @@ const sendForm = async (formEl) => {
           label="Enter email address"
           prop="email"
         >
-          <BaseInput v-model="data.email" :type="'text'" />
+          <BaseInput v-model="data.email" />
         </el-form-item>
         <el-form-item class="form__item" label="Enter password" prop="password">
           <BaseInput v-model="data.password" :type="'password'" />

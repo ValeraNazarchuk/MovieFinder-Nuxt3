@@ -10,7 +10,7 @@ const props = defineProps({
   },
   type: {
     type: String,
-    required: true,
+    default: "text",
   },
 });
 const { modelValue, type } = toRefs(props);
