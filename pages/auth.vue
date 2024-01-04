@@ -3,6 +3,7 @@ import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 import { definePageMeta } from "#imports";
+import { useNotificationStore } from "@/stores/notifications.js";
 import { useHead } from "#app";
 
 useHead({
@@ -11,6 +12,7 @@ useHead({
 
 definePageMeta({ layout: "auth" });
 
+const { error } = useNotificationStore();
 const router = useRouter();
 const authStore = useAuthStore();
 const data = reactive({
@@ -33,14 +35,6 @@ const rules = reactive({
   ],
 });
 
-const openNotification = (text) => {
-  ElNotification({
-    title: "Error",
-    message: text,
-    type: "error",
-  });
-};
-
 const sendForm = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
@@ -49,10 +43,10 @@ const sendForm = async (formEl) => {
       if (result) {
         router.push("/");
       } else {
-        openNotification("You entered the wrong email or password");
+        error("You entered the wrong email or password");
       }
     } else {
-      openNotification("Please input your data");
+      error("Please input your data");
     }
   });
 };

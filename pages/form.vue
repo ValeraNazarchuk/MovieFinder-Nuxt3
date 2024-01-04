@@ -1,11 +1,13 @@
 <script setup>
 import { ref, reactive } from "vue";
 import { useHead } from "#app";
+import { useNotificationStore } from "@/stores/notifications.js";
 
 useHead({
   title: "Form",
 });
 
+const { error, success } = useNotificationStore();
 const showUpload = ref(true);
 
 const data = reactive({
@@ -73,13 +75,9 @@ const sendForm = async (formEl) => {
 
       showUpload.value = false;
 
-      ElNotification({
-        title: "Added",
-        message: "movie added",
-        type: "success",
-      });
+      success("Movie added");
     } else {
-      console.log("error submit!", fields);
+      error("Please fill out the form correctly");
     }
   });
 };

@@ -3,6 +3,7 @@ import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth.js";
 import { definePageMeta } from "#imports";
+import { useNotificationStore } from "@/stores/notifications.js";
 import { useHead } from "#app";
 
 useHead({
@@ -11,6 +12,7 @@ useHead({
 
 definePageMeta({ layout: "auth" });
 
+const { error } = useNotificationStore();
 const router = useRouter();
 const authStore = useAuthStore();
 const checked = ref(false);
@@ -35,14 +37,6 @@ const rules = reactive({
   ],
 });
 
-const openNotification = (text) => {
-  ElNotification({
-    title: "Error",
-    message: text,
-    type: "error",
-  });
-};
-
 const sendForm = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
@@ -51,10 +45,10 @@ const sendForm = async (formEl) => {
       if (authStore.similarEmail) {
         router.push("/auth");
       } else {
-        openNotification("A user with this email has already been created");
+        error("A user with this email has already been created");
       }
     } else {
-      openNotification("Check if you entered everything correctly");
+      error("Check if you entered everything correctly");
     }
   });
 };

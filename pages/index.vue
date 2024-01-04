@@ -3,6 +3,7 @@ import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useHead } from "#app";
 import { definePageMeta } from "#imports";
+import { useNotificationStore } from "@/stores/notifications.js";
 
 // definePageMeta({ layout: "default", middleware: ["default"] });
 definePageMeta({ layout: "default" });
@@ -11,6 +12,7 @@ useHead({
   title: "Home",
 });
 
+const { error } = useNotificationStore();
 const router = useRouter();
 
 const ruleFormRef = ref();
@@ -25,14 +27,6 @@ const ruleForm = reactive({
   movieValue: "",
 });
 
-const openNotification = (text) => {
-  ElNotification({
-    title: "Error",
-    message: text,
-    type: "error",
-  });
-};
-
 const searchClick = async (formEl) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
@@ -40,9 +34,9 @@ const searchClick = async (formEl) => {
       router.push(`/movies?search=${ruleForm.movieValue}&page=1`);
     } else {
       if (ruleForm.movieValue.length === 0) {
-        openNotification("Error submit, enter text!");
+        error("Error submit, enter text!");
       } else {
-        openNotification("The length should be from 3!");
+        error("The length should be from 3!");
       }
     }
   });
