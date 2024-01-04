@@ -1,8 +1,10 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import { api } from "@/services/api";
+import { useNotificationStore } from "@/stores/notifications.js";
 
 export const useMoviesStore = defineStore("moviesStore", () => {
+  const { error } = useNotificationStore();
   const loading = ref(false);
   const movies = ref([]);
   const movie = ref({});
@@ -11,9 +13,14 @@ export const useMoviesStore = defineStore("moviesStore", () => {
     loading.value = true;
     try {
       const response = await api(`?s=${movie}&page=${page}`);
-      movies.value = JSON.parse(response.data.value).Search;
-    } catch (error) {
-      console.error("Error fetching movies:", error);
+      if (!response.error.value) {
+        movies.value = JSON.parse(response.data.value).Search;
+      } else {
+        error(response.error.value);
+      }
+    } catch (errorText) {
+      console.log(errorText);
+      error(`Error fetching movies:${errorText}`);
     } finally {
       loading.value = false;
     }
@@ -23,9 +30,13 @@ export const useMoviesStore = defineStore("moviesStore", () => {
     loading.value = true;
     try {
       const response = await api(`?i=${movieId}`);
-      movie.value = JSON.parse(response.data.value);
-    } catch (error) {
-      console.error("Error fetching movie:", error);
+      if (!response.error.value) {
+        movie.value = JSON.parse(response.data.value);
+      } else {
+        error(response.error.value);
+      }
+    } catch (errorText) {
+      error(`Error fetching movie:${errorText}`);
     } finally {
       loading.value = false;
     }
