@@ -33,13 +33,7 @@ movieStore.getDetailedMovie(route.params.id);
   <div v-else class="movie">
     <div class="movie__inner">
       <div class="movie__content">
-        <BaseButton
-          native-type="button"
-          type="primary"
-          @onClick="router.back()"
-        >
-          Back
-        </BaseButton>
+        <BaseButton type="primary" @onClick="router.back()"> Back </BaseButton>
         <h3 class="movie__content-title">{{ movie.Title }}</h3>
         <p>
           IMDb: <strong>{{ movie.imdbRating }}</strong>
@@ -66,7 +60,6 @@ movieStore.getDetailedMovie(route.params.id);
         <div class="movie__images-buttons">
           <BaseButton
             v-show="!auditId(movie.imdbID)"
-            native-type="button"
             type="success"
             @onClick="favoriteMoviesStore.addMovie(movie)"
           >
@@ -74,7 +67,6 @@ movieStore.getDetailedMovie(route.params.id);
           </BaseButton>
           <BaseButton
             v-show="auditId(movie.imdbID)"
-            native-type="button"
             type="danger"
             @onClick="favoriteMoviesStore.deleteMovie(movie.imdbID)"
           >

@@ -23,15 +23,12 @@ const router = useRouter();
         </p>
         <div class="error-content__buttons">
           <BaseButton
-            native-type="button"
             type="primary"
             class="error-content__button el-button--primary"
             @click="router.push('/')"
             >Go to Home</BaseButton
           >
           <BaseButton
-            native-type="button"
-            type="default"
             class="error-content__button el-button--info"
             @click="router.push('/')"
             >Info</BaseButton

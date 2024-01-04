@@ -5,17 +5,15 @@ const emits = defineEmits(["onClick"]);
 const props = defineProps({
   type: {
     type: String,
-    required: true,
     default: "default",
   },
   nativeType: {
     type: String,
-    required: true,
     default: "button",
   },
   disabled: {
     type: Boolean,
-    required: false,
+    default: false,
   },
 });
 
