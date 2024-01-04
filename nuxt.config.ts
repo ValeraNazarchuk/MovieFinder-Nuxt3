@@ -3,7 +3,6 @@ export default defineNuxtConfig({
     head: {
       title: "Base Nuxt Setup",
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.svg" }],
-      // lang: "en",
       meta: [
         {
           name: "viewport",
